@@ -1,28 +1,23 @@
 import pygame
-pygame.init
-black=(0,0,0)
-size=(700,700)
-screen=pygame.display.set_mode(size)
-pygame.display.set_caption("My game")
-clock=pygame.time.Clock()
-
-class Player:
-    def __init__ (self, name, age)
-        
-
-done=False
-
-while done==False:
-    for event in pygame.event.get():
-        if event.type==pygame.QUIT:
-            done=True
+import gui
 
 
-    screen.fill(black)
-    pygame.display.flip()
-    clock.tick(60)
+def main():
+    pygame.init()
+    my_screen=gui.GameGui("version 0.0.1")
 
-pygame.quit()
+    done=False
 
-    
+    while done==False:
+        for event in pygame.event.get():
+            if event.type==pygame.QUIT:
+                done=True
 
+    my_screen.build()
+    my_screen.set_clock(60)
+     
+
+
+
+if __name__ == "__main__":
+    main()
