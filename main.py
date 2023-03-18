@@ -14,7 +14,7 @@ def main():
     time.sleep(4)
     player_one.tool.change_color("red")
     player_one.tool.draw_tool(my_screen.screen, 80, 80)
-    target_1=target.Target
+    target_1=target.Target()
     target_1.draw(surface = my_screen.screen)
 
     done=False

@@ -11,7 +11,13 @@ class Target:
     
     def draw(self, surface):
         surface.fill((0,0,0))
-        pygame.draw.circle(surface, self.color, pygame.Rect(self.position, self.radius))
+
+        #surface = the screen
+        # self.color = what color will have the shape
+        # (122, 250) = coordonates -> x = 122 and y=250
+        # 20 = radius of the circle
+        # 0 = fill with color all the circle
+        pygame.draw.circle(surface, self.color, (122,250), 20, 0)
         pygame.display.flip()
     
      
