@@ -2,6 +2,7 @@ import pygame
 import player
 import gui
 import time
+import target
 
 
 def main():
@@ -10,9 +11,11 @@ def main():
     my_screen.build()
     player_one = player.Player(name="Carina", age=20)
     player_one.tool.build(my_screen.screen)
-    time.sleep(5)
+    time.sleep(4)
     player_one.tool.change_color("red")
     player_one.tool.draw_tool(my_screen.screen, 80, 80)
+    target_1=target.Target
+    target_1.draw(surface = my_screen.screen)
 
     done=False
 
