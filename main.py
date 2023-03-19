@@ -21,12 +21,14 @@ def main():
 
     done=False
 
-    vel = 1
-    x = 100
-    y = 200
+    i=0
 
-    width = 20
-    height = 20
+    vel = 1
+    x = 180
+    y = 127
+
+    width = 40
+    height = 40
 
 
     while done==False:
@@ -52,8 +54,12 @@ def main():
         target_1=target.Target("circle", "red", 200, 150)
         target_1.draw(surface = my_screen.screen)
 
-
         pygame.draw.rect(my_screen.screen, "blue", (x,y, width, height))
+        
+        if x <= 180 and x >= 177 and y >= 127 and y <= 130:
+            print("lovit" + str(i))
+            i = i + 1
+
         pygame.display.update()
 
     pygame.quit()
