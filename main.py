@@ -52,11 +52,6 @@ def main():
         target_1=target.Target("circle", "red", 200, 150)
         target_1.draw(surface = my_screen.screen)
 
-        target_2=target.Target("rect", "green", 300, 350)
-        target_2.draw(surface = my_screen.screen)
-
-        pygame.draw.rect(my_screen.screen, "white", (50,50,100,100))
-        # pygame.display.flip()
 
         pygame.draw.rect(my_screen.screen, "blue", (x,y, width, height))
         pygame.display.update()

@@ -22,8 +22,5 @@ class Target:
         if(self.shape == "circle"):
             pygame.draw.circle(surface, self.color, (self.x,self.y), 20, 0)
 
-        if(self.shape == "rect"):
-            pygame.draw.rect(surface, self.color, (self.x, self.y, 50, 50))
-        # pygame.display.flip()
     
      
