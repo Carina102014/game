@@ -3,12 +3,14 @@ import player
 import gui
 import time
 import target
+import random
 
 
 def main():
     pygame.init()
-    my_screen=gui.GameGui("version 0.0.1")
+    my_screen=gui.GameGui("version 0.1.3")
     my_screen.build()
+    clock = pygame.time.Clock()
     # player_one = player.Player(name="Carina", age=20)
     # player_one.tool.build(my_screen.screen)
     # time.sleep(4)
@@ -30,6 +32,17 @@ def main():
     width = 40
     height = 40
 
+    diametru = 20
+
+    cord_x = random.randint(50, 600)
+    cord_y = random.randint(50, 600)
+    cord_x1 = random.randint(50, 600)
+    cord_y1 = random.randint(50, 600)
+    cord_x2 = random.randint(50, 600)
+    cord_y2 = random.randint(50, 600)
+
+    print(cord_x2)
+    print(cord_y2)
 
     while done==False:
         for event in pygame.event.get():
@@ -51,16 +64,32 @@ def main():
             y += vel
 
         my_screen.screen.fill((0,0,0))
-        target_1=target.Target("circle", "red", 200, 150)
+        target_1=target.Target("circle", "red", cord_x, cord_y, 10)
         target_1.draw(surface = my_screen.screen)
 
-        pygame.draw.rect(my_screen.screen, "blue", (x,y, width, height))
+        target_2=target.Target("circle", "green", cord_x1, cord_y1, 25)
+        target_2.draw(surface = my_screen.screen)
         
-        if x <= 180 and x >= 177 and y >= 127 and y <= 130:
+        target_3=target.Target("circle", "yellow", cord_x2, cord_y2, diametru)
+        target_3.draw(surface = my_screen.screen)
+
+        target_4=target.Target("circle", "blue", 500, 500, 20)
+        target_4.draw(surface = my_screen.screen)
+
+        pygame.draw.rect(my_screen.screen, "green", (x,y, width, height))
+
+  
+        # if x <= cord_x2 and x >= cord_x2-3 and y >= cord_y2-3 and y <= cord_y2 and diametru * 2 == width:
+        #     print("lovit" + str(i))
+        #     i = i + 1
+
+        if x <= 520 and x >= 480 and y >= 478 and y <= 490 and diametru * 2 == width:
             print("lovit" + str(i))
             i = i + 1
 
         pygame.display.update()
+        
+        clock.tick(300)
 
     pygame.quit()
 
