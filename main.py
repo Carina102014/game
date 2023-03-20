@@ -3,12 +3,14 @@ import player
 import gui
 import time
 import target
+import random
 
 
 def main():
     pygame.init()
-    my_screen=gui.GameGui("version 0.0.1")
+    my_screen=gui.GameGui("version 0.1.3")
     my_screen.build()
+    clock = pygame.time.Clock()
     # player_one = player.Player(name="Carina", age=20)
     # player_one.tool.build(my_screen.screen)
     # time.sleep(4)
@@ -30,8 +32,24 @@ def main():
     width = 40
     height = 40
 
-    culoare = (0,255,0)
-    coodonata = 200
+    diametru = 20
+
+    culoare = "blue"
+
+    rosu = "red"
+    verde = "green"
+    galben = "yellow"
+    albastru = "blue"
+
+    cord_x = random.randint(50, 600)
+    cord_y = random.randint(50, 600)
+    cord_x1 = random.randint(50, 600)
+    cord_y1 = random.randint(50, 600)
+    cord_x2 = random.randint(50, 600)
+    cord_y2 = random.randint(50, 600)
+
+    print(cord_x2)
+    print(cord_y2)
 
     while done==False:
         for event in pygame.event.get():
@@ -53,18 +71,37 @@ def main():
             y += vel
 
         my_screen.screen.fill((0,0,0))
-        target_1=target.Target("circle", culoare, coodonata, 150)
+
+        target_1=target.Target("circle", rosu, cord_x, cord_y, 10)
+
         target_1.draw(surface = my_screen.screen)
 
-        pygame.draw.rect(my_screen.screen, "blue", (x,y, width, height))
+        target_2=target.Target("circle", albastru, cord_x1, cord_y1, 25)
+        target_2.draw(surface = my_screen.screen)
         
-        if x <= 180 and x >= 177 and y >= 127 and y <= 130:
-            print("lovit" + str(i))
-            i = i + 1
-            # culoare = (0,0,0)
-            coodonata = 1000
+        target_3=target.Target("circle", galben, cord_x2, cord_y2, diametru)
+        target_3.draw(surface = my_screen.screen)
+        target_4=target.Target("circle", albastru, 500, 500, 20)
+        target_4.draw(surface = my_screen.screen)
+
+        pygame.draw.rect(my_screen.screen, culoare, (x,y, width, height))
+
+        if x <= cord_x1 + 20 and x >= cord_x1 - 20 and y >= cord_y1 - 22 and y <= cord_y1 - 10:
+            if culoare == target_2.color:
+                print("compatibil")
+                cord_x1 = random.randint(50, 600)
+                cord_y1 = random.randint(50, 600)
+
+            print("shot")
+
+        # if x <= 520 and x >= 480 and y >= 478 and y <= 490 and diametru * 2 == width:
+        #     print("lovit" + str(i))
+        #     i = i + 1
+            # print(target_4.color)
 
         pygame.display.update()
+        
+        clock.tick(300)
 
     pygame.quit()
 
