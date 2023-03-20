@@ -24,12 +24,14 @@ def main():
     i=0
 
     vel = 1
-    x = 180
+    x = 200
     y = 127
 
     width = 40
     height = 40
 
+    culoare = (0,255,0)
+    coodonata = 200
 
     while done==False:
         for event in pygame.event.get():
@@ -51,7 +53,7 @@ def main():
             y += vel
 
         my_screen.screen.fill((0,0,0))
-        target_1=target.Target("circle", "red", 200, 150)
+        target_1=target.Target("circle", culoare, coodonata, 150)
         target_1.draw(surface = my_screen.screen)
 
         pygame.draw.rect(my_screen.screen, "blue", (x,y, width, height))
@@ -59,6 +61,8 @@ def main():
         if x <= 180 and x >= 177 and y >= 127 and y <= 130:
             print("lovit" + str(i))
             i = i + 1
+            # culoare = (0,0,0)
+            coodonata = 1000
 
         pygame.display.update()
 

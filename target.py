@@ -21,6 +21,4 @@ class Target:
         # 0 = fill with color all the circle
         if(self.shape == "circle"):
             pygame.draw.circle(surface, self.color, (self.x,self.y), 20, 0)
-
-    
      
