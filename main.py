@@ -3,6 +3,7 @@ import player
 import gui
 import time
 import target
+import tool
 import random
 
 
@@ -84,7 +85,9 @@ def main():
         target_4=target.Target("circle", albastru, 500, 500, 20)
         target_4.draw(surface = my_screen.screen)
 
-        pygame.draw.rect(my_screen.screen, culoare, (x,y, width, height))
+        # pygame.draw.rect(my_screen.screen, culoare, (x,y, width, height))
+        tool_1 = tool.Tool(culoare, x, y, width, height)
+        tool_1.build(my_screen.screen)
 
         if x <= cord_x1 + 20 and x >= cord_x1 - 20 and y >= cord_y1 - 22 and y <= cord_y1 - 10:
             if culoare == target_2.color:
