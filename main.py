@@ -49,6 +49,8 @@ def main():
     cord_x2 = random.randint(50, 600)
     cord_y2 = random.randint(50, 600)
 
+    id_color = random.randint(1,3)
+
     print(cord_x2)
     print(cord_y2)
 
@@ -86,7 +88,7 @@ def main():
         target_4.draw(surface = my_screen.screen)
 
         # pygame.draw.rect(my_screen.screen, culoare, (x,y, width, height))
-        tool_1 = tool.Tool(culoare, x, y, width, height)
+        tool_1 = tool.Tool(id_color, x, y, width, height)
         tool_1.build(my_screen.screen)
 
         if x <= cord_x1 + 20 and x >= cord_x1 - 20 and y >= cord_y1 - 22 and y <= cord_y1 - 10:
