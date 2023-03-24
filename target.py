@@ -3,16 +3,17 @@ import random
 
 
 class Target:
-    def __init__(self, shape, color, x, y, radius):
+    def __init__(self, shape, color, x, y, radius, id_target):
         self.shape = shape
         self.color = color
         self.position = [random.randint(0, 600), random.randint(0, 500)]
-        self.radius = 10
+        self.radius = radius
         self.x = x
         self.y = y
         # self.x = random.randint(0,700)
         # self.y = random.randint(0,700)
         self.radius=radius
+        self.id_target = id_target
     
     def draw(self, surface):
         # surface.fill((0,0,0))
