@@ -12,16 +12,6 @@ def main():
     my_screen=gui.GameGui("version 0.1.3")
     my_screen.build()
     clock = pygame.time.Clock()
-    # player_one = player.Player(name="Carina", age=20)
-    # player_one.tool.build(my_screen.screen)
-    # time.sleep(4)
-    # player_one.tool.change_color("red")
-    # player_one.tool.draw_tool(my_screen.screen, 80, 80)
-    # time.sleep(4)
-    # target_1=target.Target()
-    # target_1.draw(surface = my_screen.screen)
-    # time.sleep(4)
-
     done=False
 
     i=0
@@ -47,8 +37,6 @@ def main():
     id_3 = 3
     id_4 = 4
 
-    cord_x = random.randint(50, 600)
-    cord_y = random.randint(50, 600)
     cord_x1 = random.randint(50, 600)
     cord_y1 = random.randint(50, 600)
     cord_x2 = random.randint(50, 600)
@@ -82,10 +70,6 @@ def main():
 
     print(target_cord_x)
     print(target_cord_y)
-    
-
-    # print(cord_x2)
-    # print(cord_y2)
 
     while done==False:
         for event in pygame.event.get():
@@ -117,13 +101,10 @@ def main():
         
         target_3=target.Target("circle", verde, cord_x3, cord_y3, diametru, id_3)
         target_3.draw(surface = my_screen.screen)
-        # target_4=target.Target("circle", albastru, 500, 500, 20, 4)
-        # target_4.draw(surface = my_screen.screen)
 
         target_4=target.Target("circle", (255,255,255), cord_x4, cord_y4, 20, id_4)
         target_4.draw(surface = my_screen.screen)
 
-        # pygame.draw.rect(my_screen.screen, culoare, (x,y, width, height))
         tool_1 = tool.Tool(id_color, x, y, width, height)
         tool_1.build(my_screen.screen)
 
@@ -233,17 +214,6 @@ def main():
 
                 print(f"new x = {target_cord_x}")
                 print(f"new y = {target_cord_y}")
-
-
-
-            
-
-
-
-        # if x <= 520 and x >= 480 and y >= 478 and y <= 490 and diametru * 2 == width:
-        #     print("lovit" + str(i))
-        #     i = i + 1
-            # print(target_4.color)
 
         pygame.display.update()
         
