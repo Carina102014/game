@@ -102,7 +102,7 @@ def main():
         target_3=target.Target("circle", verde, cord_x3, cord_y3, diametru, id_3)
         target_3.draw(surface = my_screen.screen)
 
-        target_4=target.Target("circle", (255,255,255), cord_x4, cord_y4, 20, id_4)
+        target_4=target.Target("circle", galben, cord_x4, cord_y4, 20, id_4)
         target_4.draw(surface = my_screen.screen)
 
         tool_1 = tool.Tool(id_color, x, y, width, height)
@@ -114,9 +114,11 @@ def main():
             if id_color == 1:
                 cord_x1 = random.randint(50, 600)
                 cord_y1 = random.randint(50, 600)
-
+                
+                print(f"old {id_color}")
                 id_color = random.randint(1,4)
-                print(f"Initial id_color {id_color}")
+                print(f"generated {id_color}")
+                # print(f"Initial id_color {id_color}")
 
                 if id_color == 1:
                     target_cord_x = cord_x1
@@ -137,12 +139,14 @@ def main():
                 print(f"new x = {target_cord_x}")
                 print(f"new y = {target_cord_y}")
             
-            if id_color == 2:
+            elif id_color == 2:
                 cord_x2 = random.randint(50, 600)
                 cord_y2 = random.randint(50, 600)
 
+                print(f"old {id_color}")
                 id_color = random.randint(1,4)
-                print(f"Initial id_color {id_color}")
+                print(f"generated {id_color}")
+                # print(f"Initial id_color {id_color}")
 
                 if id_color == 1:
                     target_cord_x = cord_x1
@@ -163,12 +167,15 @@ def main():
                 print(f"new x = {target_cord_x}")
                 print(f"new y = {target_cord_y}")
 
-            if id_color == 3:
+            elif id_color == 3:
                 cord_x3 = random.randint(50, 600)
                 cord_y3 = random.randint(50, 600)
 
+                print(f"old {id_color}")
                 id_color = random.randint(1,4)
-                print(f"Initial id_color {id_color}")
+                # print(f"Initial id_color {id_color}")
+                print(f"generated {id_color}")
+
 
                 if id_color == 1:
                     target_cord_x = cord_x1
@@ -189,12 +196,14 @@ def main():
                 print(f"new x = {target_cord_x}")
                 print(f"new y = {target_cord_y}")
 
-            if id_color == 4:
+            elif id_color == 4:
                 cord_x4 = random.randint(50, 600)
                 cord_y4 = random.randint(50, 600)
 
+                print(f"old {id_color}")
                 id_color = random.randint(1,4)
-                print(f"Initial id_color {id_color}")
+                print(f"generated {id_color}")
+                # print(f"Initial id_color {id_color}")
 
                 if id_color == 1:
                     target_cord_x = cord_x1
