@@ -21,12 +21,13 @@ def main():
 
 # ------- music / sound ------------------------------
     target_sound =  pygame.mixer.Sound("sound_shot.mp3") 
+    click_sound = pygame.mixer.Sound("sound_click.wav")
 
 #  ------  images ---------------------------------
-    image_target = pygame.image.load("target2.png")
-    image_start = pygame.image.load("start.png")
-    image_exit = pygame.image.load("exit.png")
-    image_continue = pygame.image.load("continue.png")
+    image_target = pygame.image.load("images/target2.png")
+    image_start = pygame.image.load("images/start.png")
+    image_exit = pygame.image.load("images/exit.png")
+    image_continue = pygame.image.load("images/continue.png")
 
 # ------ variable for score -------------
     score = 0
@@ -58,13 +59,13 @@ def main():
 
 # -------------- targets coordonates ----------------------
     cord_x1 = random.randint(50, 600)
-    cord_y1 = random.randint(50, 600)
+    cord_y1 = random.randint(170, 600)
     cord_x2 = random.randint(50, 600)
-    cord_y2 = random.randint(50, 600)
+    cord_y2 = random.randint(170, 600)
     cord_x3 = random.randint(50, 600)
-    cord_y3 = random.randint(50, 600)
+    cord_y3 = random.randint(170, 600)
     cord_x4 = random.randint(50, 600)
-    cord_y4 = random.randint(50, 600)
+    cord_y4 = random.randint(170, 600)
 
 # ------- generate a random color for the TOOL and set the value of target_cord_x and target_cord_y ---------
     id_color = random.randint(1,4)
@@ -92,9 +93,9 @@ def main():
     logging.debug(f"target_cord_x = {target_cord_x}")
     logging.debug(f"target_cord_y = {target_cord_y}")
 
-    buton_start = button.Button(200, 200, image_start, 0.4)
-    buton_exit = button.Button(200,300, image_exit, 0.2)
-    buton_continue = button.Button(200,400, image_continue, 0.4)
+    buton_start = button.Button(250, 200, image_start, 0.4)
+    buton_exit = button.Button(250,300, image_exit, 0.4)
+    buton_continue = button.Button(250,200, image_continue, 0.4)
 
 
     while done==False:
@@ -134,6 +135,7 @@ def main():
             state_exit = buton_exit.draw(my_screen.screen)
 
             if state_start:
+                click_sound.play()
                 print("start")
                 game_paused = False
                 game_start = False
@@ -176,7 +178,7 @@ def main():
                     if id_color == 1:
                         score = score + 1
                         cord_x1 = random.randint(50, 600)
-                        cord_y1 = random.randint(50, 600)
+                        cord_y1 = random.randint(170, 600)
                         
                         logging.debug(f"old id_color = {id_color}")
                         id_color = random.randint(1,4)
@@ -204,7 +206,7 @@ def main():
                     elif id_color == 2:
                         score = score + 1
                         cord_x2 = random.randint(50, 600)
-                        cord_y2 = random.randint(50, 600)
+                        cord_y2 = random.randint(170, 600)
 
                         logging.debug(f"old id_color = {id_color}")
                         id_color = random.randint(1,4)
@@ -232,7 +234,7 @@ def main():
                     elif id_color == 3:
                         score = score + 1
                         cord_x3 = random.randint(50, 600)
-                        cord_y3 = random.randint(50, 600)
+                        cord_y3 = random.randint(170, 600)
 
                         logging.debug(f"old id_color = {id_color}")
                         id_color = random.randint(1,4)
@@ -260,7 +262,7 @@ def main():
                     elif id_color == 4:
                         score = score + 1
                         cord_x4 = random.randint(50, 600)
-                        cord_y4 = random.randint(50, 600)
+                        cord_y4 = random.randint(170, 600)
 
                         logging.debug(f"old id_color = {id_color}")
                         id_color = random.randint(1,4)
@@ -293,6 +295,7 @@ def main():
                     done = True
 
                 if state_continue:
+                    click_sound.play()
                     game_paused = False
 
 
