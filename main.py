@@ -13,9 +13,12 @@ def main():
     my_screen=gui.GameGui("version 0.1.3")
     my_screen.build()
     clock = pygame.time.Clock()
+    my_font = pygame.font.SysFont('Comic Sans MS', 30)
     done=False
 
     image_target = pygame.image.load("target2.png")
+
+    score = 0
 
     i=0
 
@@ -94,6 +97,9 @@ def main():
         new_image_target = pygame.transform.scale(image_target, (width, height))
         my_screen.screen.blit(new_image_target, (x, y))
 
+        text_surface = my_font.render(f'Score: {score}', False, (255, 255, 255))
+        my_screen.screen.blit(text_surface, (20,20))
+
         target_1=target.Target("circle", albastru, cord_x1, cord_y1, 25, id_1)
 
         target_1.draw(surface = my_screen.screen)
@@ -117,6 +123,7 @@ def main():
 
             print("shot")
             if id_color == 1:
+                score = score + 1
                 cord_x1 = random.randint(50, 600)
                 cord_y1 = random.randint(50, 600)
                 
@@ -145,6 +152,7 @@ def main():
                 print(f"new y = {target_cord_y}")
             
             elif id_color == 2:
+                score = score + 1
                 cord_x2 = random.randint(50, 600)
                 cord_y2 = random.randint(50, 600)
 
@@ -173,6 +181,7 @@ def main():
                 print(f"new y = {target_cord_y}")
 
             elif id_color == 3:
+                score = score + 1
                 cord_x3 = random.randint(50, 600)
                 cord_y3 = random.randint(50, 600)
 
@@ -202,6 +211,7 @@ def main():
                 print(f"new y = {target_cord_y}")
 
             elif id_color == 4:
+                score = score + 1
                 cord_x4 = random.randint(50, 600)
                 cord_y4 = random.randint(50, 600)
 
