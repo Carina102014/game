@@ -6,9 +6,11 @@ import target
 import tool
 import random
 import toolCostum
+import logging
 
 
 def main():
+    logging.basicConfig(level=logging.DEBUG, format="%(levelname)s: %(message)s")
     pygame.init()
     my_screen=gui.GameGui("version 0.1.3")
     my_screen.build()
@@ -49,7 +51,7 @@ def main():
     cord_y4 = random.randint(50, 600)
 
     id_color = random.randint(1,4)
-    print(f"Initial id_color {id_color}")
+    logging.debug(f"Inital id_color is {id_color}")
 
     target_cord_x = 0
     target_cord_y = 0
@@ -70,8 +72,8 @@ def main():
         target_cord_x = cord_x4
         target_cord_y = cord_y4
 
-    print(target_cord_x)
-    print(target_cord_y)
+    logging.debug(f"target_cord_x = {target_cord_x}")
+    logging.debug(f"target_cord_y = {target_cord_y}")
 
     while done==False:
         for event in pygame.event.get():
@@ -113,24 +115,20 @@ def main():
         target_4=target.Target("circle", yellow, cord_x4, cord_y4, 25, id_4)
         target_4.draw(surface = my_screen.screen)
 
-        # tool_1 = tool.Tool(id_color, x, y, width, height)
-        # tool_1.build(my_screen.screen)
-
         tool_1 = toolCostum.ToolCostum(id_color, x, y, width, height)
         tool_1.build(my_screen.screen)
 
         if x <= target_cord_x + 20 and x >= target_cord_x - 20 and y >= target_cord_y - 22 and y <= target_cord_y - 10:
 
-            print("shot")
+            logging.debug("shot")
             if id_color == 1:
                 score = score + 1
                 cord_x1 = random.randint(50, 600)
                 cord_y1 = random.randint(50, 600)
                 
-                print(f"old {id_color}")
+                logging.debug(f"old id_color = {id_color}")
                 id_color = random.randint(1,4)
-                print(f"generated {id_color}")
-                # print(f"Initial id_color {id_color}")
+                logging.debug(f"new id_color = {id_color}")
 
                 if id_color == 1:
                     target_cord_x = cord_x1
@@ -148,18 +146,17 @@ def main():
                     target_cord_x = cord_x4
                     target_cord_y = cord_y4
 
-                print(f"new x = {target_cord_x}")
-                print(f"new y = {target_cord_y}")
+                logging.debug(f"new target_cord_x = {target_cord_x}")
+                logging.debug(f"new target_cord_y = {target_cord_y}")
             
             elif id_color == 2:
                 score = score + 1
                 cord_x2 = random.randint(50, 600)
                 cord_y2 = random.randint(50, 600)
 
-                print(f"old {id_color}")
+                logging.debug(f"old id_color = {id_color}")
                 id_color = random.randint(1,4)
-                print(f"generated {id_color}")
-                # print(f"Initial id_color {id_color}")
+                logging.debug(f"new id_color = {id_color}")
 
                 if id_color == 1:
                     target_cord_x = cord_x1
@@ -177,19 +174,17 @@ def main():
                     target_cord_x = cord_x4
                     target_cord_y = cord_y4
 
-                print(f"new x = {target_cord_x}")
-                print(f"new y = {target_cord_y}")
+                logging.debug(f"new target_cord_x = {target_cord_x}")
+                logging.debug(f"new target_cord_y = {target_cord_y}")
 
             elif id_color == 3:
                 score = score + 1
                 cord_x3 = random.randint(50, 600)
                 cord_y3 = random.randint(50, 600)
 
-                print(f"old {id_color}")
+                logging.debug(f"old id_color = {id_color}")
                 id_color = random.randint(1,4)
-                # print(f"Initial id_color {id_color}")
-                print(f"generated {id_color}")
-
+                logging.debug(f"new id_color = {id_color}")
 
                 if id_color == 1:
                     target_cord_x = cord_x1
@@ -207,18 +202,17 @@ def main():
                     target_cord_x = cord_x4
                     target_cord_y = cord_y4
 
-                print(f"new x = {target_cord_x}")
-                print(f"new y = {target_cord_y}")
+                logging.debug(f"new target_cord_x = {target_cord_x}")
+                logging.debug(f"new target_cord_y = {target_cord_y}")
 
             elif id_color == 4:
                 score = score + 1
                 cord_x4 = random.randint(50, 600)
                 cord_y4 = random.randint(50, 600)
 
-                print(f"old {id_color}")
+                logging.debug(f"old id_color = {id_color}")
                 id_color = random.randint(1,4)
-                print(f"generated {id_color}")
-                # print(f"Initial id_color {id_color}")
+                logging.debug(f"new id_color = {id_color}")
 
                 if id_color == 1:
                     target_cord_x = cord_x1
@@ -236,8 +230,8 @@ def main():
                     target_cord_x = cord_x4
                     target_cord_y = cord_y4
 
-                print(f"new x = {target_cord_x}")
-                print(f"new y = {target_cord_y}")
+                logging.debug(f"new target_cord_x = {target_cord_x}")
+                logging.debug(f"new target_cord_y = {target_cord_y}")
 
         pygame.display.update()
         
