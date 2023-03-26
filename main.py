@@ -5,6 +5,7 @@ import time
 import target
 import tool
 import random
+import toolCostum
 
 
 def main():
@@ -14,6 +15,8 @@ def main():
     clock = pygame.time.Clock()
     done=False
 
+    image_target = pygame.image.load("target2.png")
+
     i=0
 
     vel = 1
@@ -22,10 +25,6 @@ def main():
 
     width = 40
     height = 40
-
-    diametru = 20
-
-    culoare = "blue"
 
     rosu = "red"
     verde = "green"
@@ -92,20 +91,26 @@ def main():
 
         my_screen.screen.fill((0,0,0))
 
-        target_1=target.Target("circle", albastru, cord_x1, cord_y1, 10, id_1)
+        new_image_target = pygame.transform.scale(image_target, (width, height))
+        my_screen.screen.blit(new_image_target, (x, y))
+
+        target_1=target.Target("circle", albastru, cord_x1, cord_y1, 25, id_1)
 
         target_1.draw(surface = my_screen.screen)
 
         target_2=target.Target("circle", rosu, cord_x2, cord_y2, 25, id_2)
         target_2.draw(surface = my_screen.screen)
         
-        target_3=target.Target("circle", verde, cord_x3, cord_y3, diametru, id_3)
+        target_3=target.Target("circle", verde, cord_x3, cord_y3, 25, id_3)
         target_3.draw(surface = my_screen.screen)
 
-        target_4=target.Target("circle", galben, cord_x4, cord_y4, 20, id_4)
+        target_4=target.Target("circle", galben, cord_x4, cord_y4, 25, id_4)
         target_4.draw(surface = my_screen.screen)
 
-        tool_1 = tool.Tool(id_color, x, y, width, height)
+        # tool_1 = tool.Tool(id_color, x, y, width, height)
+        # tool_1.build(my_screen.screen)
+
+        tool_1 = toolCostum.ToolCostum(id_color, x, y, width, height)
         tool_1.build(my_screen.screen)
 
         if x <= target_cord_x + 20 and x >= target_cord_x - 20 and y >= target_cord_y - 22 and y <= target_cord_y - 10:
