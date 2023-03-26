@@ -29,10 +29,10 @@ def main():
     width = 40
     height = 40
 
-    rosu = "red"
-    verde = "green"
-    galben = "yellow"
-    albastru = "blue"
+    red = "red"
+    green = "green"
+    yellow = "yellow"
+    blue = "blue"
 
     id_1 = 1
     id_2 = 2
@@ -100,17 +100,17 @@ def main():
         text_surface = my_font.render(f'Score: {score}', False, (255, 255, 255))
         my_screen.screen.blit(text_surface, (20,20))
 
-        target_1=target.Target("circle", albastru, cord_x1, cord_y1, 25, id_1)
+        target_1=target.Target("circle", blue, cord_x1, cord_y1, 25, id_1)
 
         target_1.draw(surface = my_screen.screen)
 
-        target_2=target.Target("circle", rosu, cord_x2, cord_y2, 25, id_2)
+        target_2=target.Target("circle", red, cord_x2, cord_y2, 25, id_2)
         target_2.draw(surface = my_screen.screen)
         
-        target_3=target.Target("circle", verde, cord_x3, cord_y3, 25, id_3)
+        target_3=target.Target("circle", green, cord_x3, cord_y3, 25, id_3)
         target_3.draw(surface = my_screen.screen)
 
-        target_4=target.Target("circle", galben, cord_x4, cord_y4, 25, id_4)
+        target_4=target.Target("circle", yellow, cord_x4, cord_y4, 25, id_4)
         target_4.draw(surface = my_screen.screen)
 
         # tool_1 = tool.Tool(id_color, x, y, width, height)

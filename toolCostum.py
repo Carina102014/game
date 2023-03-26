@@ -12,20 +12,20 @@ class ToolCostum():
 
     def build(self, screen):
         if self.id_color == 1:
-           self.poza = pygame.image.load("target1.png")
+           self.image = pygame.image.load("target1.png")
         
         elif self.id_color == 2:
-           self.poza = pygame.image.load("target3.png")
+           self.image = pygame.image.load("target3.png")
         
         elif self.id_color == 3:
-           self.poza = pygame.image.load("target2.png")
+           self.image = pygame.image.load("target2.png")
         
         elif self.id_color == 4:
-           self.poza = pygame.image.load("target4.png")
+           self.image = pygame.image.load("target4.png")
 
-        new_poza = pygame.transform.scale(self.poza, (self.width, self.height))
+        new_iamge = pygame.transform.scale(self.image, (self.width, self.height))
 
-        screen.blit(new_poza, (self.x, self.y))
+        screen.blit(new_iamge, (self.x, self.y))
 
     def change_color(self, new_color):
         self.color = new_color
