@@ -19,6 +19,9 @@ def main():
     my_font = pygame.font.SysFont('Comic Sans MS', 30)
     done=False
 
+# ------- music / sound ------------------------------
+    target_sound =  pygame.mixer.Sound("sound_shot.mp3") 
+
 #  ------  images ---------------------------------
     image_target = pygame.image.load("target2.png")
     image_start = pygame.image.load("start.png")
@@ -169,6 +172,7 @@ def main():
                 if x <= target_cord_x + 20 and x >= target_cord_x - 20 and y >= target_cord_y - 22 and y <= target_cord_y - 10:
 
                     logging.debug("shot")
+                    target_sound.play()
                     if id_color == 1:
                         score = score + 1
                         cord_x1 = random.randint(50, 600)
