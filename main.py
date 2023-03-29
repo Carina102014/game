@@ -20,8 +20,8 @@ def main():
     done=False
 
 # ------- music / sound ------------------------------
-    target_sound =  pygame.mixer.Sound("sound_shot.mp3") 
-    click_sound = pygame.mixer.Sound("sound_click.wav")
+    target_sound =  pygame.mixer.Sound("sounds/sound_shot.mp3") 
+    click_sound = pygame.mixer.Sound("sounds/sound_click.wav")
 
 #  ------  images ---------------------------------
     image_target = pygame.image.load("images/target2.png")
