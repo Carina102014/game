@@ -147,12 +147,14 @@ def main():
                 print("exit")
                 done=True
 
+        # show the finish menu ---------------------------------------------------------------
         elif  finish_game == True:
                 text_surface = my_font.render(f'The game finish', False, (255, 255, 255))
                 my_screen.screen.blit(text_surface, (20,20))
 
                 text_surface = my_font.render(f'Your score is: {score}', False, (255, 255, 255))
                 my_screen.screen.blit(text_surface, (200,100))
+        # ------------------------------------------------------------------------------------
 
         else:
 
