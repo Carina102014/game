@@ -31,6 +31,7 @@ def main():
 
 # ------ variable for score -------------
     score = 0
+    timer = 5
 
 # ------------ variables for the game windows --------------------
     game_start = True
@@ -154,6 +155,9 @@ def main():
 
                 text_surface = my_font.render(f'Score: {score}', False, (255, 255, 255))
                 my_screen.screen.blit(text_surface, (20,20))
+
+                text_surface = my_font.render(f'Timer: {timer}', False, (255, 255, 255))
+                my_screen.screen.blit(text_surface, (200,20))
 
                 target_1=target.Target("circle", blue, cord_x1, cord_y1, 25, id_1)
 
@@ -286,6 +290,13 @@ def main():
 
                         logging.debug(f"new target_cord_x = {target_cord_x}")
                         logging.debug(f"new target_cord_y = {target_cord_y}")
+
+                if timer == 0:
+                    done = True
+
+                time.sleep(1)
+                logging.debug(f"Timer: {timer}")
+                timer = timer - 1
 
             else:
                 state_continue = buton_continue.draw(my_screen.screen)
