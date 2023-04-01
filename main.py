@@ -31,12 +31,14 @@ def main():
 
 # ------ variable for score -------------
     score = 0
-    timer = 5
+    timer = 10
+    last_timer = pygame.time.get_ticks()
 
 # ------------ variables for the game windows --------------------
     game_start = True
     game_paused = False
     state_start = False
+    finish_game = False
 
 # --------- variables for the TOOL -------------
     vel = 1
@@ -145,6 +147,12 @@ def main():
                 print("exit")
                 done=True
 
+        elif  finish_game == True:
+                text_surface = my_font.render(f'The game finish', False, (255, 255, 255))
+                my_screen.screen.blit(text_surface, (20,20))
+
+                text_surface = my_font.render(f'Your score is: {score}', False, (255, 255, 255))
+                my_screen.screen.blit(text_surface, (200,100))
 
         else:
 
@@ -292,11 +300,14 @@ def main():
                         logging.debug(f"new target_cord_y = {target_cord_y}")
 
                 if timer == 0:
-                    done = True
+                    finish_game = True
 
-                time.sleep(1)
-                logging.debug(f"Timer: {timer}")
-                timer = timer - 1
+                
+                if timer > 0:
+                    count_timer = pygame.time.get_ticks()
+                    if count_timer - last_timer > 1000:
+                        timer = timer - 1
+                        last_timer = count_timer
 
             else:
                 state_continue = buton_continue.draw(my_screen.screen)
