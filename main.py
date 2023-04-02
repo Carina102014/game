@@ -28,6 +28,7 @@ def main():
     image_start = pygame.image.load("images/start.png")
     image_exit = pygame.image.load("images/exit.png")
     image_continue = pygame.image.load("images/continue.png")
+    image_save = pygame.image.load("images/save.png")
 
 # ------ variables -------------
     score = 0
@@ -47,6 +48,7 @@ def main():
     game_paused = False
     state_start = False
     finish_game = False
+    save_game = False
 
 # --------- variables for the TOOL -------------
     vel = 1
@@ -107,6 +109,7 @@ def main():
     buton_start = button.Button(250, 200, image_start, 0.4)
     buton_exit = button.Button(250,300, image_exit, 0.4)
     buton_continue = button.Button(250,200, image_continue, 0.4)
+    buton_save = button.Button(250, 200, image_save, 0.4)
 
 
     while done==False:
@@ -187,6 +190,18 @@ def main():
 
                 text_surface = my_font.render(f'Your score is: {score}', False, (255, 255, 255))
                 my_screen.screen.blit(text_surface, (200,100))
+
+                save_game = buton_save.draw(my_screen.screen)
+
+                if save_game:
+                    print("game saved")
+                    print(user_name)
+                    print(score)
+                    file = open('player.txt', 'w')
+                    file.write(user_name + "\n")
+                    file.write(str(score)+"\n")
+                    file.close()
+                    done=True
         # ------------------------------------------------------------------------------------
 
         else:
