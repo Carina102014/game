@@ -31,10 +31,15 @@ def main():
     image_new_game = pygame.image.load("images/new_game.jpg")
     image_quit = pygame.image.load("images/quit.jpg")
 
-# ------ variables -------------
+# ------ variable score ---------------------
     score = 0
+
+# variables for timer ------------------------
     timer = 10
     last_timer = pygame.time.get_ticks()
+
+    timer_bonus = 5
+    last_timer_bonus = pygame.time.get_ticks()
 
 # input_name variables -----------------------
     user_name = ""
@@ -258,6 +263,21 @@ def main():
                         score = score + 1
                         cord_x1 = random.randint(50, 600)
                         cord_y1 = random.randint(170, 600)
+
+                        # bonus timer -------------------------------
+                        if timer != 0:
+                            if timer_bonus == 5:
+                                timer_bonus = 5
+                                timer = timer + 4
+                                logging.debug(f"timer = {timer} + 4")
+                            elif timer_bonus == 4:
+                                timer_bonus = 5
+                                timer = timer + 3
+                                logging.debug(f"timer = {timer} + 3")
+                            else:
+                                timer_bonus = 5
+                                timer = timer + 2
+                                logging.debug(f"timer = {timer} + 2")
                         
                         logging.debug(f"old id_color = {id_color}")
                         id_color = random.randint(1,4)
@@ -287,6 +307,21 @@ def main():
                         cord_x2 = random.randint(50, 600)
                         cord_y2 = random.randint(170, 600)
 
+                        # bonus timer -------------------------------
+                        if timer != 0:
+                            if timer_bonus == 5:
+                                timer_bonus = 5
+                                timer = timer + 4
+                                logging.debug(f"timer = {timer} + 4")
+                            elif timer_bonus == 4:
+                                timer_bonus = 5
+                                timer = timer + 3
+                                logging.debug(f"timer = {timer} + 3")
+                            else:
+                                timer_bonus = 5
+                                timer = timer + 2
+                                logging.debug(f"timer = {timer} + 2")
+
                         logging.debug(f"old id_color = {id_color}")
                         id_color = random.randint(1,4)
                         logging.debug(f"new id_color = {id_color}")
@@ -314,6 +349,21 @@ def main():
                         score = score + 1
                         cord_x3 = random.randint(50, 600)
                         cord_y3 = random.randint(170, 600)
+
+                        # bonus timer -------------------------------
+                        if timer != 0:
+                            if timer_bonus == 5:
+                                timer_bonus = 5
+                                timer = timer + 4
+                                logging.debug(f"timer = {timer} + 4")
+                            elif timer_bonus == 4:
+                                timer_bonus = 5
+                                timer = timer + 3
+                                logging.debug(f"timer = {timer} + 3")
+                            else:
+                                timer_bonus = 5
+                                timer = timer + 2
+                                logging.debug(f"timer = {timer} + 2")
 
                         logging.debug(f"old id_color = {id_color}")
                         id_color = random.randint(1,4)
@@ -343,6 +393,22 @@ def main():
                         cord_x4 = random.randint(50, 600)
                         cord_y4 = random.randint(170, 600)
 
+                        # bonus timer -------------------------------
+                        if timer != 0:
+                            if timer_bonus == 5:
+                                timer_bonus = 5
+                                timer = timer + 4
+                                logging.debug(f"timer = {timer} + 4")
+                            elif timer_bonus == 4:
+                                timer_bonus = 5
+                                timer = timer + 3
+                                logging.debug(f"timer = {timer} + 3")
+                            else:
+                                timer_bonus = 5
+                                timer = timer + 2
+                                logging.debug(f"timer = {timer} + 2")
+                         
+
                         logging.debug(f"old id_color = {id_color}")
                         id_color = random.randint(1,4)
                         logging.debug(f"new id_color = {id_color}")
@@ -369,12 +435,19 @@ def main():
                 if timer == 0:
                     finish_game = True
 
-                
+                # timer -----------------------------------------------
                 if timer > 0:
                     count_timer = pygame.time.get_ticks()
                     if count_timer - last_timer > 1000:
                         timer = timer - 1
                         last_timer = count_timer
+
+                # timer_bonus --------------------------------------------
+                if timer_bonus > 0:
+                    count_timer_bonus = pygame.time.get_ticks()
+                    if count_timer_bonus - last_timer_bonus > 1000:
+                        timer_bonus = timer_bonus - 1
+                        last_timer_bonus = count_timer_bonus
 
             else:
                 state_continue = buton_continue.draw(my_screen.screen)
@@ -389,7 +462,7 @@ def main():
 
 
         pygame.display.update()
-        clock.tick(300)
+        clock.tick(270)
 
     pygame.quit()
 
