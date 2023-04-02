@@ -29,11 +29,19 @@ def main():
     image_exit = pygame.image.load("images/exit.png")
     image_continue = pygame.image.load("images/continue.png")
 
-# ------ variable for score -------------
+# ------ variables -------------
     score = 0
     timer = 10
     last_timer = pygame.time.get_ticks()
 
+# input_name variables -----------------------
+    user_name = ""
+    input_name = pygame.Rect(190,400,140,50)
+    color_active = pygame.Color("blue")
+    color_passive = pygame.Color("red")
+    color = color_passive
+
+    active = False
 # ------------ variables for the game windows --------------------
     game_start = True
     game_paused = False
@@ -104,7 +112,20 @@ def main():
     while done==False:
 
         for event in pygame.event.get():
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                if input_name.collidepoint(event.pos):
+                    active = True
+                
+                else:
+                    active = False
+
             if event.type == pygame.KEYDOWN:
+                if active == True:
+                    if event.key == pygame.K_BACKSPACE:
+                        user_name = user_name[0:-1]
+                    else:
+                        user_name += event.unicode
+
                 if event.key == pygame.K_p:
                     game_paused = True
                     logging.debug(f"game_paused = {game_paused}")
@@ -133,9 +154,21 @@ def main():
         my_screen.screen.fill((0,0,0))
 
         if game_start == True:
-
             state_start = buton_start.draw(my_screen.screen)
             state_exit = buton_exit.draw(my_screen.screen)
+
+            if active:
+                color = color_active
+            
+            else:
+                color = color_passive
+
+            name_surface = my_font.render(user_name, True, (255,255,255))
+            my_screen.screen.blit(name_surface, (input_name.x + 5, input_name.y + 5))
+
+            input_name.w = max(300, name_surface.get_width() + 10)
+            pygame.draw.rect(my_screen.screen, color, input_name, 2)
+
 
             if state_start:
                 click_sound.play()
@@ -324,7 +357,6 @@ def main():
 
 
         pygame.display.update()
-        
         clock.tick(300)
 
     pygame.quit()
