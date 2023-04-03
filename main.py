@@ -43,7 +43,7 @@ def main():
 
 # input_name variables -----------------------
     user_name = ""
-    input_name = pygame.Rect(190,400,140,50)
+    input_name = pygame.Rect(190,450,140,50)
     color_active = pygame.Color("blue")
     color_passive = pygame.Color("red")
     color = color_passive
@@ -116,8 +116,8 @@ def main():
     buton_start = button.Button(250, 200, image_start, 0.4)
     buton_exit = button.Button(250,300, image_exit, 0.4)
     buton_continue = button.Button(250,200, image_continue, 0.4)
-    buton_save = button.Button(250, 200, image_new_game, 0.4)
-    buton_quit = button.Button(250, 300, image_quit, 0.4)
+    buton_save = button.Button(250, 300, image_new_game, 0.4)
+    buton_quit = button.Button(250, 400, image_quit, 0.4)
 
 
     while done==False:
@@ -174,6 +174,9 @@ def main():
             else:
                 color = color_passive
 
+            text_surface = my_font.render(f'Name', False, (255, 255, 255))
+            my_screen.screen.blit(text_surface, (300,400))
+
             name_surface = my_font.render(user_name, True, (255,255,255))
             my_screen.screen.blit(name_surface, (input_name.x + 5, input_name.y + 5))
 
@@ -196,10 +199,13 @@ def main():
         # show the finish menu ---------------------------------------------------------------
         elif  finish_game == True:
                 text_surface = my_font.render(f'The game finish', False, (255, 255, 255))
-                my_screen.screen.blit(text_surface, (20,20))
+                my_screen.screen.blit(text_surface, (220,20))
+
+                text_surface = my_font.render(f'Congratulations {user_name}', False, (255, 255, 255))
+                my_screen.screen.blit(text_surface, (170,100))
 
                 text_surface = my_font.render(f'Your score is: {score}', False, (255, 255, 255))
-                my_screen.screen.blit(text_surface, (200,100))
+                my_screen.screen.blit(text_surface, (210,200))
 
                 save_game = buton_save.draw(my_screen.screen)
                 quit_game = buton_quit.draw(my_screen.screen)
@@ -238,6 +244,9 @@ def main():
 
                 text_surface = my_font.render(f'Timer: {timer}', False, (255, 255, 255))
                 my_screen.screen.blit(text_surface, (200,20))
+
+                text_surface = my_font.render(f'Player: {user_name}', False, (255, 255, 255))
+                my_screen.screen.blit(text_surface, (400,20))
 
                 target_1=target.Target("circle", blue, cord_x1, cord_y1, 25, id_1)
 
