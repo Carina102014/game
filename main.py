@@ -5,14 +5,30 @@ import time
 import target
 import tool
 import random
-
+#import button
 
 def main():
     pygame.init()
+    pygame.font.init()
     my_screen=gui.GameGui("version 0.1.3")
     my_screen.build()
     clock = pygame.time.Clock()
     done=False
+
+    score=0
+    font = pygame.font.Font(None, 36)
+
+
+    #start_img=pygame.image.load('start_button.png').convert_alpha
+    #quit_img=pygame.image.load('quit_button.png').convert_alpha
+
+    #start_button = button.Button( 140, 180, start_img)
+    #start_button.draw(surface = my_screen.screen)
+
+    #quit_button = button.Button( 340, 180,  quit_img)
+    #quit_button.draw(surface = my_screen.screen)
+
+    
 
     i=0
 
@@ -70,12 +86,12 @@ def main():
 
     print(target_cord_x)
     print(target_cord_y)
-
+    
     while done==False:
         for event in pygame.event.get():
             if event.type==pygame.QUIT:
                 done=True
-        
+
         keys = pygame.key.get_pressed()
 
         if keys[pygame.K_LEFT] and x > 0:
@@ -102,15 +118,21 @@ def main():
         target_3=target.Target("circle", verde, cord_x3, cord_y3, diametru, id_3)
         target_3.draw(surface = my_screen.screen)
 
-        target_4=target.Target("circle", (255,255,255), cord_x4, cord_y4, 20, id_4)
+        target_4=target.Target("circle", galben, cord_x4, cord_y4, 20, id_4)
         target_4.draw(surface = my_screen.screen)
 
         tool_1 = tool.Tool(id_color, x, y, width, height)
         tool_1.build(my_screen.screen)
 
+        score_text = font.render(f'Score: {score}', True, (255, 255, 255))
+        my_screen.screen.blit(score_text, (10, 10))
+
         if x <= target_cord_x + 20 and x >= target_cord_x - 20 and y >= target_cord_y - 22 and y <= target_cord_y - 10:
 
             print("shot")
+            score+=1
+            print(score)
+
             if id_color == 1:
                 cord_x1 = random.randint(50, 600)
                 cord_y1 = random.randint(50, 600)

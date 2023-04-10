@@ -24,7 +24,7 @@ class Tool():
             self.color = "green"
         
         elif self.id_color == 4:
-            self.color = "white"
+            self.color = "yellow"
 
         if self.shape == "rect":    
             pygame.draw.rect(screen, self.color, (self.x, self.y, self.width, self.height))
