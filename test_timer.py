@@ -28,34 +28,16 @@ def main():
     image_start = pygame.image.load("images/start.png")
     image_exit = pygame.image.load("images/exit.png")
     image_continue = pygame.image.load("images/continue.png")
-    image_new_game = pygame.image.load("images/new_game.jpg")
-    image_quit = pygame.image.load("images/quit.jpg")
 
-# ------ variable score ---------------------
+
+# ------ variable for score -------------
     score = 0
+    timer = 5
 
-# variables for timer ------------------------
-    timer = 10
-    last_timer = pygame.time.get_ticks()
-
-    timer_bonus = 5
-    last_timer_bonus = pygame.time.get_ticks()
-
-# input_name variables -----------------------
-    user_name = ""
-    input_name = pygame.Rect(190,450,140,50)
-    color_active = pygame.Color("blue")
-    color_passive = pygame.Color("red")
-    color = color_passive
-
-    active = False
 # ------------ variables for the game windows --------------------
     game_start = True
     game_paused = False
     state_start = False
-    finish_game = False
-    save_game = False
-    quit_game = False
 
 # --------- variables for the TOOL -------------
     vel = 1
@@ -116,27 +98,12 @@ def main():
     buton_start = button.Button(250, 200, image_start, 0.4)
     buton_exit = button.Button(250,300, image_exit, 0.4)
     buton_continue = button.Button(250,200, image_continue, 0.4)
-    # buton_save = button.Button(250, 300, image_new_game, 0.4)
-    buton_quit = button.Button(250, 400, image_quit, 0.4)
 
 
     while done==False:
 
         for event in pygame.event.get():
-            if event.type == pygame.MOUSEBUTTONDOWN:
-                if input_name.collidepoint(event.pos):
-                    active = True
-                
-                else:
-                    active = False
-
             if event.type == pygame.KEYDOWN:
-                if active == True:
-                    if event.key == pygame.K_BACKSPACE:
-                        user_name = user_name[0:-1]
-                    else:
-                        user_name += event.unicode
-
                 if event.key == pygame.K_p:
                     game_paused = True
                     logging.debug(f"game_paused = {game_paused}")
@@ -145,6 +112,7 @@ def main():
                     game_paused = False
                     logging.debug(f"game_paused = {game_paused}")
 
+        
             if event.type==pygame.QUIT:
                 done=True
         
@@ -165,30 +133,13 @@ def main():
         my_screen.screen.fill((0,0,0))
 
         if game_start == True:
+
             state_start = buton_start.draw(my_screen.screen)
             state_exit = buton_exit.draw(my_screen.screen)
-
-            if active:
-                color = color_active
-            
-            else:
-                color = color_passive
-
-            text_surface = my_font.render(f'Name', False, (255, 255, 255))
-            my_screen.screen.blit(text_surface, (300,400))
-
-            name_surface = my_font.render(user_name, True, (255,255,255))
-            my_screen.screen.blit(name_surface, (input_name.x + 5, input_name.y + 5))
-
-            input_name.w = max(300, name_surface.get_width() + 10)
-            pygame.draw.rect(my_screen.screen, color, input_name, 2)
-
 
             if state_start:
                 click_sound.play()
                 print("start")
-                timer = 10
-                score = 0
                 game_paused = False
                 game_start = False
 
@@ -196,43 +147,6 @@ def main():
                 print("exit")
                 done=True
 
-        # show the finish menu ---------------------------------------------------------------
-        elif  finish_game == True:
-                text_surface = my_font.render(f'The game finish', False, (255, 255, 255))
-                my_screen.screen.blit(text_surface, (220,20))
-
-                text_surface = my_font.render(f'Congratulations {user_name}', False, (255, 255, 255))
-                my_screen.screen.blit(text_surface, (170,100))
-
-                text_surface = my_font.render(f'Your score is: {score}', False, (255, 255, 255))
-                my_screen.screen.blit(text_surface, (210,200))
-
-                # save_game = buton_save.draw(my_screen.screen)
-                quit_game = buton_quit.draw(my_screen.screen)
-
-                if save_game:
-                    print("game saved")
-                    print(user_name)
-                    print(score)
-                    file = open('player.txt', 'w')
-                    file.write(user_name + "\n")
-                    file.write(str(score)+"\n")
-                    file.close()
-                    game_start = True
-                    finish_game = False
-                    state_exit = False
-                    state_start = True
-
-                if quit_game:
-                    print("game quited")
-                    print(user_name)
-                    print(score)
-                    file = open('player.txt', 'w')
-                    file.write(user_name + "\n")
-                    file.write(str(score)+"\n")
-                    file.close()
-                    done = True
-        # ------------------------------------------------------------------------------------
 
         else:
 
@@ -246,9 +160,6 @@ def main():
 
                 text_surface = my_font.render(f'Timer: {timer}', False, (255, 255, 255))
                 my_screen.screen.blit(text_surface, (200,20))
-
-                text_surface = my_font.render(f'Player: {user_name}', False, (255, 255, 255))
-                my_screen.screen.blit(text_surface, (400,20))
 
                 target_1=target.Target("circle", blue, cord_x1, cord_y1, 25, id_1)
 
@@ -274,21 +185,6 @@ def main():
                         score = score + 1
                         cord_x1 = random.randint(50, 600)
                         cord_y1 = random.randint(170, 600)
-
-                        # bonus timer -------------------------------
-                        if timer != 0:
-                            if timer_bonus == 5:
-                                timer_bonus = 5
-                                timer = timer + 4
-                                logging.debug(f"timer = {timer} + 4")
-                            elif timer_bonus == 4:
-                                timer_bonus = 5
-                                timer = timer + 3
-                                logging.debug(f"timer = {timer} + 3")
-                            else:
-                                timer_bonus = 5
-                                timer = timer + 2
-                                logging.debug(f"timer = {timer} + 2")
                         
                         logging.debug(f"old id_color = {id_color}")
                         id_color = random.randint(1,4)
@@ -318,21 +214,6 @@ def main():
                         cord_x2 = random.randint(50, 600)
                         cord_y2 = random.randint(170, 600)
 
-                        # bonus timer -------------------------------
-                        if timer != 0:
-                            if timer_bonus == 5:
-                                timer_bonus = 5
-                                timer = timer + 4
-                                logging.debug(f"timer = {timer} + 4")
-                            elif timer_bonus == 4:
-                                timer_bonus = 5
-                                timer = timer + 3
-                                logging.debug(f"timer = {timer} + 3")
-                            else:
-                                timer_bonus = 5
-                                timer = timer + 2
-                                logging.debug(f"timer = {timer} + 2")
-
                         logging.debug(f"old id_color = {id_color}")
                         id_color = random.randint(1,4)
                         logging.debug(f"new id_color = {id_color}")
@@ -360,21 +241,6 @@ def main():
                         score = score + 1
                         cord_x3 = random.randint(50, 600)
                         cord_y3 = random.randint(170, 600)
-
-                        # bonus timer -------------------------------
-                        if timer != 0:
-                            if timer_bonus == 5:
-                                timer_bonus = 5
-                                timer = timer + 4
-                                logging.debug(f"timer = {timer} + 4")
-                            elif timer_bonus == 4:
-                                timer_bonus = 5
-                                timer = timer + 3
-                                logging.debug(f"timer = {timer} + 3")
-                            else:
-                                timer_bonus = 5
-                                timer = timer + 2
-                                logging.debug(f"timer = {timer} + 2")
 
                         logging.debug(f"old id_color = {id_color}")
                         id_color = random.randint(1,4)
@@ -404,22 +270,6 @@ def main():
                         cord_x4 = random.randint(50, 600)
                         cord_y4 = random.randint(170, 600)
 
-                        # bonus timer -------------------------------
-                        if timer != 0:
-                            if timer_bonus == 5:
-                                timer_bonus = 5
-                                timer = timer + 4
-                                logging.debug(f"timer = {timer} + 4")
-                            elif timer_bonus == 4:
-                                timer_bonus = 5
-                                timer = timer + 3
-                                logging.debug(f"timer = {timer} + 3")
-                            else:
-                                timer_bonus = 5
-                                timer = timer + 2
-                                logging.debug(f"timer = {timer} + 2")
-                         
-
                         logging.debug(f"old id_color = {id_color}")
                         id_color = random.randint(1,4)
                         logging.debug(f"new id_color = {id_color}")
@@ -444,21 +294,11 @@ def main():
                         logging.debug(f"new target_cord_y = {target_cord_y}")
 
                 if timer == 0:
-                    finish_game = True
+                    done = True
 
-                # timer -----------------------------------------------
-                if timer > 0:
-                    count_timer = pygame.time.get_ticks()
-                    if count_timer - last_timer > 1000:
-                        timer = timer - 1
-                        last_timer = count_timer
-
-                # timer_bonus --------------------------------------------
-                if timer_bonus > 0:
-                    count_timer_bonus = pygame.time.get_ticks()
-                    if count_timer_bonus - last_timer_bonus > 1000:
-                        timer_bonus = timer_bonus - 1
-                        last_timer_bonus = count_timer_bonus
+                time.sleep(1)
+                logging.debug(f"Timer: {timer}")
+                timer = timer - 1
 
             else:
                 state_continue = buton_continue.draw(my_screen.screen)
@@ -473,7 +313,8 @@ def main():
 
 
         pygame.display.update()
-        clock.tick(270)
+        
+        clock.tick(300)
 
     pygame.quit()
 
